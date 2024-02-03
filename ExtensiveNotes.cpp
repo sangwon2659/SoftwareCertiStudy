@@ -456,18 +456,18 @@ int main()
     using psi = pair<string, int>;
     set<psi> managers {{"Amelia", 29}, {"Noah", 25}, {"Olivia", 31},
 		{"Sophia", 40}};
-	//pair 이렇게도 가능
+    //pair 이렇게도 가능
     managers.insert(make_pair("George", 35));
     psi person1 = {"Noah", 25};
-	if (managers.find(person1) != managers.end())
-		cout << person1.first << " is a manager!" << endl;
-	else
-		cout << person1.first << " is not a manager!" << endl;
+    if (managers.find(person1) != managers.end())
+	cout << person1.first << " is a manager!" << endl;
+    else
+	cout << person1.first << " is not a manager!" << endl;
     managers.erase({"Sophia", 40});
-	managers.erase({"Noah", 30});
+    managers.erase({"Noah", 30});
     cout << "Managers in the set: ";
     for (const auto& m : managers)
-		cout << m.first << "(" << m.second << ") ";
+	cout << m.first << "(" << m.second << ") ";
     cout << endl;
     //참고로 psi라는 데이터 타입은 첫번째 입력 데이터 타입에 대해 정렬을 자동으로 해주고
     //만약 동일한 게 있다면 두번째 데이터 타입을 기준으로 정렬함
@@ -484,16 +484,16 @@ int main()
     //operator[]는 특정 키에 해당하는 원소의 값을 참조로 반환하는데
     //해당 키의 원소가 없으면 새로운 원소를 기본값으로 생성하여 참조를 반환함
     map<string, int> fruits;
-	fruits.insert({"apple", 1000});
-	fruits.insert({"banana", 1500});
-	//이렇게 하면 0으로 초기화 해서 삽입
+    fruits.insert({"apple", 1000});
+    fruits.insert({"banana", 1500});
+    //이렇게 하면 0으로 초기화 해서 삽입
     fruits["orange"];
-	cout << fruits["apple"] << endl;
+    cout << fruits["apple"] << endl;
     fruits["apple"] = 2000;
-	fruits.erase("grape");
+    fruits.erase("grape");
     cout << "Information in the map: " << endl;
-	for (auto [name, price] : fruits)
-		cout << name << " is " << price << " won." << endl;
+    for (auto [name, price] : fruits)
+	cout << name << " is " << price << " won." << endl;
     cout << endl;
 
     //////////////////Heap//////////////////
@@ -512,22 +512,22 @@ int main()
     //-> 트리 마지막 자리 노드를 임시로 루트 노드의 자리에 배치하고 자식 노드들과의 값 비교를 하여 아래로, 아래로 이동 
     //(내리는 건 더 큰 키 값을 가지는 자식 쪽으로)
     MaxHeap heap;
-	heap.push(10);
-	heap.push(5);
-	heap.push(15);
-	heap.push(7);
-	heap.push(3);
-	heap.push(9);
-	heap.push(14);
-	heap.push(8);
-	heap.push(2);
-	heap.push(4);
-	heap.print();
-	while (!heap.empty()) {
-		cout << heap.top() << ", ";
-		heap.pop();
-	}
-	cout << endl;
+    heap.push(10);
+    heap.push(5);
+    heap.push(15);
+    heap.push(7);
+    heap.push(3);
+    heap.push(9);
+    heap.push(14);
+    heap.push(8);
+    heap.push(2);
+    heap.push(4);
+    heap.print();
+    while (!heap.empty()) {
+	cout << heap.top() << ", ";
+	heap.pop();
+    }
+    cout << endl;
     //<algorithm>에 make_heap이라는 게 정의되어 있긴 함 (참고)
     cout << endl;
 
@@ -563,22 +563,22 @@ int main()
     //std::unordered_set
     //#include <unordered_set> 필요
     //unordered_set는 중복되는 데이터는 insert 불가 (중복되도 되는 상태로 하려면 std::unordered_multiset 사용해야 함)
-	//car -> radio -> orange -> ear -> radio
+    //car -> radio -> orange -> ear -> radio
     cout << "Unordered Set" << endl;
-	unordered_set<string> words;
-	words.insert("car");
-	words.insert("radio");
-	words.insert("orange");
-	words.insert("ear");
-	string word = "radio";
-	if (words.find(word) != words.end())
-		cout << word << " is used!" << endl;
-	else
-		cout << word << " is NOT used!" << endl;
-	vector<int> numbers {1, 5, 3, 1, 5, 7, 4, 5, 6, 3, 2, 7, 3, 6, 2};
+    unordered_set<string> words;
+    words.insert("car");
+    words.insert("radio");
+    words.insert("orange");
+    words.insert("ear");
+    string word = "radio";
+    if (words.find(word) != words.end())
+	cout << word << " is used!" << endl;
+    else
+	cout << word << " is NOT used!" << endl;
+    vector<int> numbers {1, 5, 3, 1, 5, 7, 4, 5, 6, 3, 2, 7, 3, 6, 2};
     //numbers라는 vector에 있는 원소들을 numbers.begin(), numbers.end()로 unordered_set<int> num_set__에 추가하면 반복되는 애들은 무시됨
-	unordered_set<int> num_set__(numbers.begin(), numbers.end());
-	cout << num_set__.size() << endl;
+    unordered_set<int> num_set__(numbers.begin(), numbers.end());
+    cout << num_set__.size() << endl;
     cout << endl;
 
     //std::unordered_map
@@ -587,15 +587,15 @@ int main()
     //unordered_map는 중복되는 데이터는 insert 불가 (중복되도 되는 상태로 하려면 std::unordered_multimap 사용해야 함)
     cout << "Unordered Map" << endl;
     unordered_map<string, int> fruits_;
-	fruits_.insert({"apple", 1000});
-	fruits_.insert({"banana", 1500});
-	fruits_["orange"] = 3000;
-	fruits_["grape"] = 4000;
-	fruits_["lemon"] = 5000;
-	fruits_["apple"] = 2000;
-	fruits_.erase("grape");
-	for (auto [name, price] : fruits_)
-		cout << name << " is " << price << " won." << endl;
+    fruits_.insert({"apple", 1000});
+    fruits_.insert({"banana", 1500});
+    fruits_["orange"] = 3000;
+    fruits_["grape"] = 4000;
+    fruits_["lemon"] = 5000;
+    fruits_["apple"] = 2000;
+    fruits_.erase("grape");
+    for (auto [name, price] : fruits_)
+	cout << name << " is " << price << " won." << endl;
     cout << endl;
 
     //////////////////Graph//////////////////
@@ -737,4 +737,3 @@ int main()
 
     return 0;
 }
-
