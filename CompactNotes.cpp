@@ -49,18 +49,28 @@ if (set.find(5) != set.end()) cout << "5 is in the set";
 str.substr(1) // <- str에 있는 두번째 element부터 마지막까지 반환
 
 // Rotation
-void RotateGrid(vector<vector<int>>& input)
+// mode = 0 Clock-wise
+// mode = 1 Anti-Clock-wise
+void RotateGrid(vector<vector<int>>& input, const int& mode)
 {
-    const int SIZE = key.size();
-    vector<vector<int>> temp(SIZE, vector<int>(SIZE, 0));
-    for(int i = 0; i < SIZE; i++)
+    const int SIZE = input.size();
+    vector<vector<int>> temp(SIZE, vector<int>(SIZE));
+
+    for (int r = 0; r < SIZE; r++)
     {
-        for(int j = 0; j < SIZE; j++)
-	{
-            //temp[i][j] = key[j][SIZE - i - 1]; // Anti Clock-Wise
-            temp[i][j] = key[SIZE - j - 1][i]; //Clock-Wise
+        for (int c = 0; c < SIZE; c++)
+        {
+            if (mode == 0)
+            {
+                temp[r][c] = input[SIZE - c - 1][r];
+            }
+            else
+            {
+                temp[r][c] = input[r][SIZE - c - 1];
+            }
         }
     }
+
     input = temp;
     return;
 }
