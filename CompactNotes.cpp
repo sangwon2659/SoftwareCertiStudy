@@ -53,8 +53,10 @@ void RotateGrid(vector<vector<int>>& input)
 {
     const int SIZE = key.size();
     vector<vector<int>> temp(SIZE, vector<int>(SIZE, 0));
-    for(int i = 0; i < SIZE; i++){
-        for(int j = 0; j < SIZE; j++){
+    for(int i = 0; i < SIZE; i++)
+    {
+        for(int j = 0; j < SIZE; j++)
+	{
             //temp[i][j] = key[j][SIZE - i - 1]; // Anti Clock-Wise
             temp[i][j] = key[SIZE - j - 1][i]; //Clock-Wise
         }
