@@ -2,11 +2,18 @@
 
 // Printing Map
 for (int r = 0; r < map.size(); r++)
+{
 	for (int c = 0; c< map[0].size(); c++)
+	{
 		cout << map[r][c] << " ";
+	}
+}
 
 // Lambda Function
-auto square = [](int a){return a * a;};
+auto Square = [](int a)
+{
+	return a * a;
+};
 
 // Sort Algorithm for Struct
 sort(v.begin(), v.end(), [](const Person& P1, const Person& P2)
@@ -16,7 +23,7 @@ sort(v.begin(), v.end(), [](const Person& P1, const Person& P2)
 
 // Using Template
 template<typename T1, typename T2>
-void printNumbers(const T1& t1, const T2& t2)
+void PrintNumbers(const T1& t1, const T2& t2)
 {
 	cout << t1 << " " << t2 << endl;
 }
@@ -41,8 +48,14 @@ set.erase({"Mike", 16});
 map["Apple"]++;
 
 // Search
-if (binary_search(v.begin(), v.end(), 5) == true) cout << "5 is in v";
-if (set.find(5) != set.end()) cout << "5 is in the set";
+if (binary_search(v.begin(), v.end(), 5) == true)
+{
+	cout << "5 is in v";
+}
+if (set.find(5) != set.end())
+{
+	cout << "5 is in the set";
+}
 
 // Divide String
 #include <string>
@@ -78,63 +91,80 @@ void RotateGrid(vector<vector<int>>& input, const int& mode)
 // DFS & BFS
 const int N = 6;
 bool bVisited[N];
-void dfs_recursion(const vector<vector<int>>& adj_list, const int& s)
+void DfsRecursion(const vector<vector<int>>& adj_list, const int& s)
 {
-	if (bVisited[s] == true) return;
+	if (bVisited[s] == true)
+	{
+		return;
+	}
 
 	bVisited[s] = true;
 	cout << s << " ";
 
 	for (int i : adj_list[s])
+	{
 		dfs_recursion(adj_list, i);
+	}
 }
      
-vector<int> dfs(const vector<vector<int>>& adj_list, int s)
+vector<int> Dfs(const vector<vector<int>>& adj_list, int s)
 {
 	vector<bool> visited(adj_list.size(), false);
 	vector<int> visit_order;
 	stack<int> stk;
 	stk.push(s);
 
-	while (!stk.empty()) {
+	while (!stk.empty())
+	{
 		int v = stk.top();
 		stk.pop();
 
 		if (visited[v])
+		{
 			continue;
+		}
 
 		visited[v] = true;
 		visit_order.push_back(v);
 
-		for (int a : adj_list[v]) {
+		for (int a : adj_list[v])
+		{
 			if (!visited[a])
+			{
 				stk.push(a);
+			}
 		}
 	}
 
 	return visit_order;
 }
 
-vector<int> bfs(const vector<vector<int>>& adj_list, int s)
+vector<int> Bfs(const vector<vector<int>>& adj_list, int s)
 {
 	vector<bool> visited(adj_list.size(), false);
 	vector<int> visit_order;
 	queue<int> q;
 	q.push(s);
 
-	while (!q.empty()) {
+	while (!q.empty())
+	{
 		int v = q.front();
 		q.pop();
 
 		if (visited[v])
+		{
 			continue;
+		}
 
 		visited[v] = true;
 		visit_order.push_back(v);
 
-		for (int a : adj_list[v]) {
+		for (int a : adj_list[v])
+		{
 			if (!visited[a])
+			{
 				q.push(a);
+			}
 		}
 	}
 	
