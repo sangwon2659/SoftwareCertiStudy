@@ -647,15 +647,15 @@ int main()
     //더 이상 이동할 정점이 없을 경우 뒤쪽으로 백트래킹(backtracking)하여 다시 이동할 경로를 탐색
     //시작 정점으로부터 거리가 멀어지는(깊이가 깊어지는) 방식으로 탐색
     //보통 재귀 또는 스택을 이용하여 구현
-	cout << "dfs_recursion: ";
-	dfs_recursion(adj_list, 0);
-	cout << endl;
+    cout << "dfs_recursion: ";
+    dfs_recursion(adj_list, 0);
+    cout << endl;
 
-	auto dfs_order = dfs(adj_list, 0);
-	cout << "dfs_stack: ";
-	for (auto n : dfs_order)
-		cout << n << ", ";
-	cout << endl;
+    auto dfs_order = dfs(adj_list, 0);
+    cout << "dfs_stack: ";
+    for (auto n : dfs_order)
+	cout << n << ", ";
+    cout << endl;
 
     //Breadth First Search
     //현재 정점과 인접한 모든 정점을 방문한 후,
