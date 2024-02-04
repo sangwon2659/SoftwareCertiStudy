@@ -87,6 +87,59 @@ void RotateGrid(vector<vector<int>>& input, const int& mode)
     input = temp;
     return;
 }
+
+// Combination & Permutation
+int arr[4] = {1, 2, 3, 4};
+int n = 4;
+int r = 3;
+int order[3] = {0};
+void PrintCombination(int nowPos, int nowVal)
+{
+	if (nowPos == r)
+	{
+		for (int idx = 0; idx < r; idx++)
+		{
+			cout << order[idx] << " ";
+		}
+
+		cout << endl;
+		return;
+	}
+
+	for (int idx = nowVal; idx < n; idx++)
+	{
+		order[nowPos] = idx;
+		PrintCombination(nowPos + 1, idx + 1);
+	}
+}
+
+bool bInUse[4] = {0};
+void PrintPermutation(int nowPos)
+{
+	if (nowPos == r)
+	{
+		for (int idx = 0; idx < r; idx++)
+		{
+			cout << order[idx] << " ";
+		}
+
+		cout << endl;
+		return;
+	}
+
+	for (int idx = 0; idx < n; idx++)
+	{
+		if (bInUse[idx])
+		{
+			continue;
+		}
+
+		bInUse[idx] = true;
+		order[nowPos] = idx;
+		PrintPermutation(nowPos + 1);
+		bInUse[idx] = false;
+	}
+}
      
 // DFS & BFS
 const int N = 6;
