@@ -1,5 +1,11 @@
 // Things to Remember
 
+// Grid 복사하는 법
+#include <cstring>
+int grid[8][8] = {0};
+int tempGrid[8][8] = {0};
+memcpy(tempGrid, grid, 8*8*sizeof(int));
+
 // Printing Map
 for (int r = 0; r < map.size(); r++)
 {
