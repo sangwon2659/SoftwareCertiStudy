@@ -85,7 +85,7 @@ void RotateGrid(vector<vector<int>>& input, const int& mode)
             }
             else
             {
-                temp[r][c] = input[r][SIZE - c - 1];
+                temp[r][c] = input[c][SIZE - r - 1];
             }
         }
     }
