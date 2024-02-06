@@ -1,4 +1,5 @@
 /*
+[2시간]
 Combination & Permutation 공부하고 새로 풀었음
 전형적인 유형이라 복습 필수
 */
