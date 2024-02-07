@@ -75,22 +75,6 @@ void ShatterIce(const int& dist, const int& dir)
     }
 }
 
-bool isExistEmptySpot()
-{
-    for (int r = 0; r < N; r++)
-    {
-        for (int c = 0; c < N; r++)
-        {
-            if (grid[r][c] == 0)
-            {
-                return true;
-            }
-        }
-    }
-
-    return false;
-}
-
 void RepositionMarble()
 {
     Pos nowPos;
