@@ -166,6 +166,8 @@ void ReturnOptimalSharkMovement(const int& r, const int& c, vector<int> vectorDi
         return;
     }
 
+    if (count != 0) bVisited[r][c] = true;
+
     for (int dir = 0; dir < 4; dir++)
     {
         int targetR = r + dy_shark[dir];
@@ -176,7 +178,6 @@ void ReturnOptimalSharkMovement(const int& r, const int& c, vector<int> vectorDi
             continue;
         }
 
-        if (count != 0) bVisited[r][c] = true;
         vectorDir.push_back(dir);
 
         if (bVisited[targetR][targetC])
@@ -187,9 +188,10 @@ void ReturnOptimalSharkMovement(const int& r, const int& c, vector<int> vectorDi
         {
             ReturnOptimalSharkMovement(targetR, targetC, vectorDir, sumFish + grid[targetR][targetC].vectorFish.size(), count + 1);
         }
-        bVisited[r][c] = false;
         vectorDir.erase(vectorDir.end() - 1);
     }
+    
+    bVisited[r][c] = false;
 }
 
 void MoveShark()
