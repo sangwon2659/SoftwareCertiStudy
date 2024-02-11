@@ -5,6 +5,7 @@ PlayerDropGunAndMove함수에서
   targetR = nowR + dy[vectorPlayers[playerIdx].dir % 4];
   targetC = nowC + dx[vectorPlayers[playerIdx].dir % 4];
 부분을 nowR & nowC가 아닌 vectorPlayers[playerIdx].y & vectorPlayers[playerIdx].x로 해서 계속 틀림...
+(targetR, targetC로 들어가서 다시 한번 더 targetR, targetC를 찾는 구조인데 그냥 nowR, nowC 이런 식으로 알아볼 수 없게 변수명을 정하니까 헷갈렸던 거)
 시간이 좀 들더라도 변수 제대로 설정하는 게 디버깅 하는 데 훨씬 편할 듯
 */
 
