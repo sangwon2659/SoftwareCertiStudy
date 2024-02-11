@@ -1,4 +1,4 @@
-# Directory to Store Solved BaekJoon Problems
+# Directory to Store Solved Problems
 
 ## Format
-Level_NameofProblem_DateSolved
+Platform_Level_NameofProblem_DateSolved
