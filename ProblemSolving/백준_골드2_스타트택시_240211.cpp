@@ -4,6 +4,12 @@
 이해한 후 새로 구현했을 때는 꼭 하나 더 깊이 들어가야만 Vector를 비교해서 ClosestCustomer를 Return 하게끔 잘 못 짜서 또 고생 함...
 (분명히 Customer가 있는데 -10으로 Return 해버리는 문제가 자꾸 발생함)
 이런 예외 Case를 어떻게 해야 잘 생각할 수 있을지 고민이 필요함
+
+BFS를 돌릴 때
+Depth를 Tracking하고 싶으면 Queue에 들어가는 자료형에 Int 하나 추가해서 돌리면서
+Push를 할 때 +1 이런 식으로 하면 됨
+한 Depth가 다 돌았을 때 뭘 하고 싶으면 maxNum을 정해놓고 이 Depth가 이 maxNum 보다 커지면 그때가 사이클의 마지막 루프임
+(더 깊은 Depth가 없을 것을 대비해 While문 밖에도 마지막 Depth에 대한 실행문 추가해줘야 함)
 */
 
 #include <iostream>
