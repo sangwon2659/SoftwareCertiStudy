@@ -1,3 +1,12 @@
+/*
+[3시간 30분]
+4 x 4 grid라서 for문 신경 안쓰고 막 돌림
+tempGrid를 잘 사용해서 Fish를 옮기는 게 중요했음
+Shark가 움직이는 경우의 수를 볼 때 bVisited의 경우 제외하는 Fish의 수를 합산하지 않는 게 가장 핵심이었고,
+맨 처음에 Shark가 시작하는 지점을 bVisited = true로 잡지 않는 것 또한 핵심이었음
+경우의 수가 겹치는 경우 그걸 Int로 바꿔서 가장 작은 숫자를 return하는 경우의 수를 선택하는 부분도 있었음
+*/
+
 #include <iostream>
 #include <cstring>
 #include <vector>
