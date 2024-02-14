@@ -1,3 +1,10 @@
+/*
+[1시간]
+전형적인 Combination 써서 경우의 수 보는 문제
+Max값을 1000으로 너무 낮게 줘서 Error 뜸
+Min을 찾을 때의 초기 Max 값은 최대한 크게 주자
+*/
+
 #include <iostream>
 #include <fstream>
 #include <vector>
