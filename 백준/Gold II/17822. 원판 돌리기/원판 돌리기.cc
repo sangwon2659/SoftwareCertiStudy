@@ -1,3 +1,11 @@
+/*
+[5시간]
+원판을 Grid형태로 이해하고, X방향으로는 % M을 써서 인접할 수 있도록 하는 것이 핵심이었음
+DFS를 하면서 -1로 바꿔주는 로직 또한 핵심이었음
+double avg = (double)sum / (double)cnt를 해줘야 avg가 double 형태로 나오면서 제대로 비교가 되는데
+double avg = (int)sum / (int)cnt를 해서 한참 동안 엄청난 카오스였음...
+*/
+
 #include <iostream>
 #include <vector>
 #include <fstream>
