@@ -1,3 +1,11 @@
+/*
+[1시간 40분]
+문제에 x랑 y를 바꿔서 써놔서 실수를 함...
++ if (targetR < 0 || targetR >= N || targetC < 0 || targetC >= M)를
+둘 다 N으로 해놔서 한참 고생함...
+집중해서 천천히 짜자
+*/
+
 #include <iostream>
 #include <vector>
 #include <cstring>
