@@ -1,3 +1,9 @@
+/*
+[1시간]
+방향을 유지한 채로 BackStep을 한다는 걸 제대로 안읽어서 디버깅 함
+%를 써서 방향 전환 알고리즘을 비교적 간결하게 짬
+*/
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
