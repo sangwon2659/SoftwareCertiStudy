@@ -1,3 +1,11 @@
+/*
+[1시간 10분]
+기준 점을 잡고 회전을 하는 것 + 매번 시작점을 선분의 끝점으로 잡는 게 핵심인 문제였음
+[y] = [0 -1] * [y]
+[x] = [1 0]    [x]
+이렇게 회전을 시킴
+*/
+
 #include <iostream>
 #include <fstream>
 #include <vector>
