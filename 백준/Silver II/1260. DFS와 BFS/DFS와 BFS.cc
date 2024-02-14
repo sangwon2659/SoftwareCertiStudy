@@ -1,3 +1,7 @@
+/*
+[24년 이전에 푼 거]
+*/
+
 #include <iostream>
 #include <vector>
 #include <stack>
