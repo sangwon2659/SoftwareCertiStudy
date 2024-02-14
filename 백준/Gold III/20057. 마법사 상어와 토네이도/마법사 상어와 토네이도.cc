@@ -1,3 +1,9 @@
+/*
+[2시간]
+Mac OS에서 cpp 돌리는 거 환경 편하게 만드는 것 때문에 한참 고생함
+문제는 무난하게 풀림
+*/
+
 #include <fstream>
 #include <iostream>
 #include <string>
