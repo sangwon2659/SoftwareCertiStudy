@@ -1,3 +1,12 @@
+/*
+[1시간 10분]
+단순히 grid[r][c] < shark.size 조건만 만족하는 게 아니라
+grid[r][c] > shark.size로 인해 아예 아무 데로도 갈 수 없는 경우를 고려하지 않아서
+런타임 에러가 몇 번 났었다...
+이건 TestCase에 이것 저것 넣어보면서 깨달은 건데
+확실히 예외 케이스를 잘 생각하는 게 중요하다
+*/
+
 #include <iostream>
 #include <vector>
 #include <fstream>
