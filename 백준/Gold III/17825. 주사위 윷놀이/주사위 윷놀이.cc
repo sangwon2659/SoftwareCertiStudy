@@ -1,3 +1,14 @@
+/*
+[6시간]
+엄청 오래 걸림...
+Permutation 응용 능력이 떨어져서 구현하는 데 어려움 많았음
+문제의 핵심:
+1. 그래프를 Grid형태로 구현하는 것
+2. 25, 30, 35, 40에서 겹치는 거 잘 처리하는 것
+3. horseContainer는 horseContainer대로 수정했다가 복원하고
+   말은 또 따로 죽였다가 다시 살리고 하는 것
+*/
+
 #include <iostream>
 #include <fstream>
 #include <vector>
