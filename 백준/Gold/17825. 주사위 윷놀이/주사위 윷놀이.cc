@@ -18,7 +18,6 @@ int dx[2] = {1, 0};
 int bestScore = 0;
 vector<Status> horseContainer(4);
 bool bHorseAlive[4] = {1, 1, 1, 1};
-vector<int> track;
 
 Status FindMoveHorseCandidateLocation(const Status& horse, const int& diceIdx)
 {
@@ -77,7 +76,6 @@ void Permutation(const int& score, const int& diceIdx)
         || horseMoveCandidate.y > 8 || horseMoveCandidate.x > 20)
         {
             bHorseAlive[horseIdx] = false;
-            track.push_back(horseIdx);
             Permutation(score, diceIdx + 1);
         }
         else
@@ -86,25 +84,13 @@ void Permutation(const int& score, const int& diceIdx)
             horseContainer[horseIdx].x = horseMoveCandidate.x;
             horseContainer[horseIdx].dir = horseMoveCandidate.dir;
 
-            track.push_back(horseIdx);
-
             if (score + grid[horseContainer[horseIdx].y][horseContainer[horseIdx].x] > bestScore)
             {
                 bestScore = score + grid[horseContainer[horseIdx].y][horseContainer[horseIdx].x];
-                
-                /*
-                for (int i = 0; i < track.size(); i++)
-                {
-                    cout << (track[i] + 1) << " ";
-                }
-                cout << "bestscore: " << bestScore <<endl;
-                */
             }
 
             Permutation(score + grid[horseContainer[horseIdx].y][horseContainer[horseIdx].x], diceIdx + 1);
         }
-
-        track.erase(track.end() - 1);
 
         bHorseAlive[horseIdx] = true;
         horseContainer = saveHorseContainer;
