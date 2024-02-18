@@ -22,13 +22,13 @@ int abs(int n) {
 }
 
 bool BFS(int n) {
-    queue<pair<int, int>> que;
-    que.push({home.x, home.y}); // 시작 위치는 "집" (pair는 {}로 입력할 수 있음)
+    queue<pair<int, int>> q;
+    q.push({home.x, home.y}); // 시작 위치는 "집" (pair는 {}로 입력할 수 있음)
 
-    while (!que.empty()) {
-        int x = que.front().first; // pair<first, second>
-        int y = que.front().second;
-        que.pop();
+    while (!q.empty()) {
+        int x = q.front().first; // pair<first, second>
+        int y = q.front().second;
+        q.pop();
 
         if (abs(festival.x - x) + abs(festival.y - y) <= 1000) return true; // 현재 위치에서 페스티벌 위치까지 1000 이하면 가능
         for (int i = 0; i < n; i++) {
@@ -38,7 +38,7 @@ bool BFS(int n) {
             }
             if (abs(store[i].x - x) + abs(store[i].y - y) <= 1000) {        // 편의점까지 이동 가능하면
                 visited[i] = 1;                                             // 해당 편의점 방문한 것으로 체크
-                que.push({store[i].x, store[i].y});                         // que에 넣어줌
+                q.push({store[i].x, store[i].y});                         // que에 넣어줌
             }
         }
     }
