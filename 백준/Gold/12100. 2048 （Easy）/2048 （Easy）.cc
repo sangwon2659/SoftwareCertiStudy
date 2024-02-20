@@ -1,201 +1,209 @@
 #include <iostream>
 #include <vector>
+#include <cstring>
 #include <fstream>
-#define max(a, b) a > b ? a : b
 
 using namespace std;
-typedef long long ll;
 
-int n;
-ll ans;
+int N;
+int grid[20][20] = { 0 };
+int largestNum = 0;
 
-// board에서 최대 값 구하는 함수
-ll getMax(vector<vector<ll>> board)
+void PrintBlock()
 {
-    ll res = 0;
-    for (int i = 0; i < n; i++)
+    for (int r = 0; r < N; r++)
     {
-        for (int j = 0; j < n; j++)
+        for (int c = 0; c < N; c++)
         {
-            res = max(res, board[i][j]);
+            cout << grid[r][c] << " ";
         }
+        
+        cout << endl;
     }
-    return res;
 }
 
-// 오른쪽 이동
-vector<vector<ll>> right(vector<vector<ll>> board)
+void MoveBlocks(const int& dir)
 {
-    vector<vector<bool>> check(n, vector<bool>(n, false));
+    int location[20];
+    bool bIsMerged[20][20] = { 0 };
 
-    for (int i = 0; i < n; i++)
+    switch (dir)
     {
-        for (int j = n - 2; j >= 0; j--)
-        {
-            if (board[i][j] == 0)
-                continue;
-            for (int k = j + 1; k < n; k++)
+        case 0:
+            for (int i = 0; i < N; i++)
             {
-                if (board[i][k] == board[i][k - 1] && !check[i][k])
+                for (int j = 1; j < N; j++)
                 {
-                    board[i][k] *= 2;
-                    board[i][k - 1] = 0;
-                    check[i][k] = true;
-                    break;
+                    if (grid[j][i] == 0)
+                        continue;
+                    for (int k = j - 1; k >= 0; k--)
+                    {
+                        if (grid[k][i] == grid[k + 1][i] && !bIsMerged[k][i])
+                        {
+                            grid[k][i] *= 2;
+                            grid[k + 1][i] = 0;
+                            bIsMerged[k][i] = true;
+                            break;
+                        }
+                        else if (grid[k][i] == 0)
+                        {
+                            grid[k][i] = grid[k + 1][i];
+                            grid[k + 1][i] = 0;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
                 }
-                else if (board[i][k] == 0)
+            }
+            break;
+
+        case 1:
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = N - 2; j >= 0; j--)
                 {
-                    board[i][k] = board[i][k - 1];
-                    board[i][k - 1] = 0;
+                    if (grid[i][j] == 0)
+                        continue;
+                    for (int k = j + 1; k < N; k++)
+                    {
+                        if (grid[i][k] == grid[i][k - 1] && !bIsMerged[i][k])
+                        {
+                            grid[i][k] *= 2;
+                            grid[i][k - 1] = 0;
+                            bIsMerged[i][k] = true;
+                            break;
+                        }
+                        else if (grid[i][k] == 0)
+                        {
+                            grid[i][k] = grid[i][k - 1];
+                            grid[i][k - 1] = 0;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
                 }
-                else
+            }
+            break;
+
+        case 2:
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = N - 2; j >= 0; j--)
                 {
-                    break;
+                    if (grid[j][i] == 0)
+                        continue;
+                    for (int k = j + 1; k < N; k++)
+                    {
+                        if (grid[k][i] == grid[k - 1][i] && !bIsMerged[k][i])
+                        {
+                            grid[k][i] *= 2;
+                            grid[k - 1][i] = 0;
+                            bIsMerged[k][i] = true;
+                            break;
+                        }
+                        else if (grid[k][i] == 0)
+                        {
+                            grid[k][i] = grid[k - 1][i];
+                            grid[k - 1][i] = 0;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
                 }
+            }
+            break;
+
+        case 3:
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 1; j < N; j++)
+                {
+                    if (grid[i][j] == 0)
+                        continue;
+                    for (int k = j - 1; k >= 0; k--)
+                    {
+                        if (grid[i][k] == grid[i][k + 1] && !bIsMerged[i][k])
+                        {
+                            grid[i][k] *= 2;
+                            grid[i][k + 1] = 0;
+                            bIsMerged[i][k] = true;
+                            break;
+                        }
+                        else if (grid[i][k] == 0)
+                        {
+                            grid[i][k] = grid[i][k + 1];
+                            grid[i][k + 1] = 0;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            break;
+    }
+}
+
+void FindLargestBlock()
+{
+    for (int r = 0; r < N; r++)
+    {
+        for (int c = 0; c < N; c++)
+        {
+            if (grid[r][c] > largestNum)
+            {
+                largestNum = grid[r][c];
             }
         }
     }
-    return board;
 }
 
-// 왼쪽 이동
-vector<vector<ll>> left(vector<vector<ll>> board)
+void DFS(const int& count)
 {
-    vector<vector<bool>> check(n, vector<bool>(n, false));
+    if (count == 5) return;
 
-    for (int i = 0; i < n; i++)
+    int saveGrid[20][20] = { 0 };
+    memcpy(saveGrid, grid, 20 * 20 * sizeof(int));
+
+    for (int dir = 0; dir < 4; dir++)
     {
-        for (int j = 1; j < n; j++)
-        {
-            if (board[i][j] == 0)
-                continue;
-            for (int k = j - 1; k >= 0; k--)
-            {
-                if (board[i][k] == board[i][k + 1] && !check[i][k])
-                {
-                    board[i][k] *= 2;
-                    board[i][k + 1] = 0;
-                    check[i][k] = true;
-                    break;
-                }
-                else if (board[i][k] == 0)
-                {
-                    board[i][k] = board[i][k + 1];
-                    board[i][k + 1] = 0;
-                }
-                else
-                {
-                    break;
-                }
-            }
-        }
+        MoveBlocks(dir);
+        FindLargestBlock();
+        DFS(count + 1);
+        memcpy(grid, saveGrid, 20 * 20 * sizeof(int));
     }
-    return board;
-}
-
-// 아래 이동
-vector<vector<ll>> down(vector<vector<ll>> board)
-{
-    vector<vector<bool>> check(n, vector<bool>(n, false));
-
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = n - 2; j >= 0; j--)
-        {
-            if (board[j][i] == 0)
-                continue;
-            for (int k = j + 1; k < n; k++)
-            {
-                if (board[k][i] == board[k - 1][i] && !check[k][i])
-                {
-                    board[k][i] *= 2;
-                    board[k - 1][i] = 0;
-                    check[k][i] = true;
-                    break;
-                }
-                else if (board[k][i] == 0)
-                {
-                    board[k][i] = board[k - 1][i];
-                    board[k - 1][i] = 0;
-                }
-                else
-                {
-                    break;
-                }
-            }
-        }
-    }
-    return board;
-}
-
-// 위로 이동
-vector<vector<ll>> up(vector<vector<ll>> board)
-{
-    vector<vector<bool>> check(n, vector<bool>(n, false));
-
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 1; j < n; j++)
-        {
-            if (board[j][i] == 0)
-                continue;
-            for (int k = j - 1; k >= 0; k--)
-            {
-                if (board[k][i] == board[k + 1][i] && !check[k][i])
-                {
-                    board[k][i] *= 2;
-                    board[k + 1][i] = 0;
-                    check[k][i] = true;
-                    break;
-                }
-                else if (board[k][i] == 0)
-                {
-                    board[k][i] = board[k + 1][i];
-                    board[k + 1][i] = 0;
-                }
-                else
-                {
-                    break;
-                }
-            }
-        }
-    }
-    return board;
-}
-
-void dfs(int L, vector<vector<ll>> board)
-{
-    ans = max(ans, getMax(board));
-    if (L == 5)
-        return;
-    dfs(L + 1, right(board));
-    dfs(L + 1, left(board));
-    dfs(L + 1, up(board));
-    dfs(L + 1, down(board));
 }
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    //ifstream txt_input("input.txt");
+    cin >> N;
 
-    ifstream txt_input("input.txt");
-
-    // 입력
-    cin >> n;
-    vector<vector<ll>> board(n, vector<ll>(n));
-    for (int i = 0; i < n; i++)
+    for (int r = 0; r < N; r++)
     {
-        for (int j = 0; j < n; j++)
+        for (int c = 0; c < N; c++)
         {
-            cin >> board[i][j];
+            int num;
+            cin >> num;
+
+            if (num > 0) grid[r][c] = num;
         }
     }
 
-    // dfs 실행
-    dfs(0, board);  
-    cout << ans << '\n';
+    DFS(0);
+    //MoveBlocks(0);
+    //PrintBlock();
+
+    cout << largestNum;
 
     return 0;
 }
