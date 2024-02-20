@@ -5,7 +5,6 @@
 
 using namespace std;
 
-
 int student[401][4];
 int map[21][21]; // 전체 맵 크기
 int N; // 입력받은 N 
@@ -107,3 +106,169 @@ int main(){
     }
     cout << getScore() << "\n";
 }
+
+/*
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include <algorithm>
+
+using namespace std;
+
+struct Pos
+{
+	int y;
+	int x;
+	int numEmpty = 0;
+};
+
+int N;
+int dy[4] = { -1, 0, 1, 0 };
+int dx[4] = { 0, 1, 0, -1 };
+int grid[20][20] = { 0 };
+int table[400][5];
+
+int CountLike(const int& num, const int& r, const int& c)
+{
+	int numLike = 0;
+
+	for (int dir = 0; dir < 4; dir++)
+	{
+		int targetR = r + dy[dir];
+		int targetC = c + dx[dir];
+
+		if (targetR < 0 || targetR >= N || targetC < 0 || targetC >= N || grid[targetR][targetC] == 0) continue;
+
+		for (int idx = 1; idx < 5; idx++)
+		{
+			if (grid[targetR][targetC] == table[num][idx])
+			{
+				numLike++;
+				break;
+			}
+		}
+	}
+
+	return numLike;
+}
+
+int CountEmpty(const int& r, const int& c)
+{
+	int numEmpty = 0;
+
+	for (int dir = 0; dir < 4; dir++)
+	{
+		int targetR = r + dy[dir];
+		int targetC = c + dx[dir];
+
+		if (targetR < 0 || targetR >= N || targetC < 0 || targetC >= N || grid[targetR][targetC] > 0) continue;
+
+		numEmpty++;
+	}
+
+	return numEmpty;
+}
+
+int MapTable(const int& input)
+{
+	for (int i = 0; i < (N * N); i++)
+	{
+		if (table[i][0] == input)
+		{
+			return i;
+		}
+	}
+}
+
+int FindSatisfaction()
+{
+	int totalSatisfaction = 0;
+
+	for (int r = 0; r < N; r++)
+	{
+		for (int c = 0; c < N; c++)
+		{
+			int student = MapTable(grid[r][c]);
+			int numLike = CountLike(student, r, c);
+
+			if (numLike == 1) totalSatisfaction += 1;
+			else if (numLike == 2) totalSatisfaction += 10;
+			else if (numLike == 3) totalSatisfaction += 100;
+			else if (numLike == 4) totalSatisfaction += 1000;
+		}
+	}
+
+	return totalSatisfaction;
+}
+
+int main()
+{
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	ifstream txt_input("input.txt");
+	txt_input >> N;
+
+	for (int i = 0; i < (N * N); i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			txt_input >> table[i][j];
+		}
+	}
+
+	for (int studentIdx = 0; studentIdx < (N * N); studentIdx++)
+	{
+		int studentNum = table[studentIdx][0];
+		vector<Pos> candidate;
+
+		int numLike = 0;
+		for (int r = 0; r < N; r++)
+		{
+			for (int c = 0; c < N; c++)
+			{
+				if (grid[r][c] > 0) continue;
+
+				int currNumLike = CountLike(studentIdx, r, c);
+				if (currNumLike == numLike)
+				{
+					candidate.push_back({ r, c });
+				}
+				else if (currNumLike > numLike)
+				{
+					candidate.clear();
+					candidate.push_back({ r, c });
+					numLike = currNumLike;
+				}
+			}
+		}
+
+		if (candidate.size() > 1)
+		{
+			sort(candidate.begin(), candidate.end(), [](const Pos& P1, const Pos& P2)
+				{
+					return P1.x < P2.x;
+				});
+			sort(candidate.begin(), candidate.end(), [](const Pos& P1, const Pos& P2)
+				{
+					return P1.y < P2.y;
+				});
+
+			for (int idx = 0; idx < candidate.size(); idx++)
+			{
+				candidate[idx].numEmpty = CountEmpty(candidate[idx].y, candidate[idx].x);
+			}
+
+			sort(candidate.begin(), candidate.end(), [](const Pos& P1, const Pos& P2)
+				{
+					return P1.numEmpty > P2.numEmpty;
+				});
+		}
+
+		grid[candidate[0].y][candidate[0].x] = studentNum;
+	}
+
+	cout << FindSatisfaction();
+
+	return 0;
+}
+*/
