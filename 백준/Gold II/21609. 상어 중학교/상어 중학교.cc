@@ -1,5 +1,9 @@
 /*
-
+[2시간 40분]
+struct에 bool operator<(const [struct_name] input)const 이걸 사용하는 게 핵심
+열하고 행을 반대로 사용해서 디버깅 오래 걸림
+A가 똑같을 경우 B를 보라고 할 때 sort를 사용하면 무조건 후자부터 sort하면 된다
+Grid문제의 경우 Print를 해보는 게 편할 수도 있다
 */
 
 #include <iostream>
