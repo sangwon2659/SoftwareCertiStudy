@@ -1,3 +1,9 @@
+/*
+[6시간]
+Grid에 사다리를 채울 때 이미 채워본 케이스는 건너뛰어야 하는데 중복되게 채워서 시간초과가 나왔음
+iNowR하고 iNowC를 쓰면서, iNowR과 같은 행일 때를 제외하고는 iNowC를 0으로 초기화 하는 방식으로 채워야 함
+*/
+
 #include <iostream>
 #include <fstream>
 #include <vector>
