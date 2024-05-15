@@ -6,6 +6,18 @@ int grid[8][8] = {0};
 int tempGrid[8][8] = {0};
 memcpy(tempGrid, grid, 8*8*sizeof(int));
 
+// Struct with operator<
+struct Student
+{
+    string name;
+    int age;
+
+    bool operator<(const Student& input) const
+    {
+        return age < input.age;
+    }
+};
+
 // Printing Map
 for (int r = 0; r < map.size(); r++)
 {
