@@ -79,6 +79,13 @@ if (set.find(5) != set.end())
 #include <string>
 str.substr(1) // <- str에 있는 두번째 element부터 마지막까지 반환
 
+string reverseString(const string& input)
+{
+    if (input == "") return "";
+
+    return reverseString(input.substr(1)) + input[0];
+}
+	
 // Rotation
 // mode = 0 Clock-wise
 // mode = 1 Anti-Clock-wise
