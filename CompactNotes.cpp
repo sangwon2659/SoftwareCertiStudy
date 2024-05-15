@@ -165,6 +165,46 @@ void PrintPermutation(int nowPos)
 		bInUse[idx] = false;
 	}
 }
+
+void combinationMap(const int& iMaxNum, const int& iNowNum, const int& iNowR, const int& iNowC)
+{
+    if (iNowNum == iMaxNum)
+    {
+        printGrid();
+        return;
+    }
+
+    for (int r = iNowR; r < 2; r++)
+    {
+        for (int c = iNowC; c < 2; c++)
+        {
+            if (Grid[r][c] == 1) continue;
+            Grid[r][c] = 1;
+            combinationMap(iMaxNum, iNowNum + 1, r, c);
+            Grid[r][c] = 0;
+        }
+    }
+}
+
+void permutationMap(const int& iMaxNum, const int& iNowNum)
+{
+    if (iNowNum == iMaxNum)
+    {
+        printGrid();
+        return;
+    }
+
+    for (int r = 0; r < 2; r++)
+    {
+        for (int c = 0; c < 2; c++)
+        {
+            if (Grid[r][c] == 1) continue;
+            Grid[r][c] = 1;
+            permutationMap(iMaxNum, iNowNum + 1);
+            Grid[r][c] = 0;
+        }
+    }
+}
      
 // DFS & BFS
 const int N = 6;
