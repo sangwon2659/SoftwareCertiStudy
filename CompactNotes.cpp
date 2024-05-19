@@ -166,22 +166,33 @@ void PrintPermutation(int nowPos)
 	}
 }
 
-void combinationMap(const int& iMaxNum, const int& iNowNum, const int& iNowR, const int& iNowC)
+void printCombinationMap(const int& iMaxActive, const int& iNowActive, const int& iNowR, int iNowC)
 {
-    if (iNowNum == iMaxNum)
+    if (iNowActive == iMaxActive)
     {
-        printGrid();
+        for (int r = 0; r < 3; r++)
+        {
+            for (int c = 0; c < 3; c++)
+            {
+                cout << Map_[r][c] << " ";
+            }
+
+            cout << endl;
+        }
+
+        cout << "======" << endl;
         return;
     }
 
-    for (int r = iNowR; r < 2; r++)
+    for (int r = iNowR; r < 3; r++)
     {
-        for (int c = iNowC; c < 2; c++)
+        //if (r != iNowR) iNowC = 0;
+        for (int c = iNowC; c < 3; c++)
         {
-            if (Grid[r][c] == 1) continue;
-            Grid[r][c] = 1;
-            combinationMap(iMaxNum, iNowNum + 1, r, c);
-            Grid[r][c] = 0;
+            if (Map_[r][c]) continue;
+            Map_[r][c] = 1;
+            printCombinationMap(iMaxActive, iNowActive + 1, r, c);
+            Map_[r][c] = 0;
         }
     }
 }
@@ -194,9 +205,9 @@ void permutationMap(const int& iMaxNum, const int& iNowNum)
         return;
     }
 
-    for (int r = 0; r < 2; r++)
+    for (int r = 0; r < 3; r++)
     {
-        for (int c = 0; c < 2; c++)
+        for (int c = 0; c < 3; c++)
         {
             if (Grid[r][c] == 1) continue;
             Grid[r][c] = 1;
