@@ -37,7 +37,7 @@ auto Square = [](int a)
 sort(v.begin(), v.end(), [](const Person& P1, const Person& P2)
 {
 	return P1.age < P2.age;
-};
+});
 
 // Using Template
 template<typename T1, typename T2>
