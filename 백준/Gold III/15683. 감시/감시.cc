@@ -1,3 +1,11 @@
+/*
+[49분]
+모든 경우의 수를 다 보는 방식으로 방향을 설정하고
+각 조합 별로 최소의 사각지대를 연산하는 문제였음.
+
+큰 문제 없이 바로 풂
+*/
+
 #include <iostream>
 #include <fstream>
 #include <vector>
