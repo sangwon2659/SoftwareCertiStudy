@@ -1,3 +1,10 @@
+/*
+[12시간]
+집중을 안하고 풀어서 계속 뭐가 꼬였다.
+막판에 memcpy로 string을 복사하는 것 때문에 invalid pointer 에러가 계속 났는데
+이것 때문에 엄청 고생했다...;;
+*/
+
 #include <iostream>
 #include <vector>
 #include <fstream>
