@@ -1,3 +1,9 @@
+/*
+[45분]
+주어진 문제 그대로 풀었더니 금방 풀림
+For문을 워낙 많이 써야돼서 처음부터 연산 복잡도를 신경쓰면서 풀었더니 시간초과가 뜨진 않았음
+*/
+    
 #include <iostream>
 #include <fstream>
 #include <vector>
