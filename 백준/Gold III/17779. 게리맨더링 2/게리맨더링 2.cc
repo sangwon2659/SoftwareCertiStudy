@@ -1,3 +1,10 @@
+/*
+[1시간 30분]
+문제를 이해하는 게 조금 어려웠음
+5를 채우는 로직을 아주 아주 Naive하게 구현했음... 창피할 정도로
+Population을 기준으로 선거구 인구 차이를 구해야 하는데 이 부분 처음에 실수함 (문제 제대로 안읽음)
+*/
+
 #include <iostream>
 #include <vector>
 #include <fstream>
