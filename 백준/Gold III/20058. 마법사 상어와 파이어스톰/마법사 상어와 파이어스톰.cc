@@ -1,3 +1,10 @@
+/*
+[45분]
+TempGrid[r + rBase][c + cBase] = Grid[Size - c - 1 + rBase][r + cBase]만 생각하면 매우 쉬운 문제.
+다만 IceChunk의 크기를 계산할 때 InitPos의 Ice가 0일 때는 Count를 하지 않도록,
+그리고 TempGrid[r][c] > 0인 경우에만 TempGrid[r][c]--;를 하는 등의 Detail이 필요했음
+*/
+
 #include <iostream>
 #include <vector>
 #include <queue>
