@@ -1,5 +1,7 @@
 /*
-[24년 이전에 푼 거]
+[4시간]
+BFS의 개념에 대해 다시 생각해보게 됨...
+그냥 외워서 쓰지 말고 진짜 이해를 하려고 노력해보자
 */
 
 #include <iostream>
@@ -9,76 +11,86 @@
 using namespace std;
 
 int N, K;
-bool visited[100001];
-int steps;
-int cnt = 1;
+int iSteps, iCount;
 
 struct Info
 {
-	int Pos;
-	int Depth;
+    int iNowLocation;
+    int iDepth;
 };
 
-int computation(int input, int mode)
+int moveLocation(const int& iNowLocation, const int& iMovement)
 {
-	switch(mode)
-	{
-		case 0:
-			return input - 1;
-		case 1:
-			return input + 1;
-		case 2:
-			return input * 2;
-	}
+    if (iMovement == 0)
+    {
+        return iNowLocation + 1;
+    }
+    else if (iMovement == 1)
+    {
+        return iNowLocation - 1;
+    }
+    else
+    {
+        return iNowLocation * 2;
+    }
 }
 
-void bfs()
+void BFS()
 {
-	queue<Info> q;
-	q.push({ N, 0 });
-	visited[N] = true;
+    bool bIsVisited[100001] = {0};
+    queue<Info> q;
+    q.push({N, 0});
+    bIsVisited[N] = true;
 
-	while (!q.empty())
-	{
-		Info v = q.front();
-		q.pop();
+    while (!q.empty())
+    {
+        Info v = q.front();
+        q.pop();
 
-		if (v.Pos == K)
-		{
-			steps = v.Depth;
-			int Depth = v.Depth;
-			if (!q.empty()) q.pop();
-			while (!q.empty())
-			{
-				Info z = q.front();
-				q.pop();
+        if (v.iNowLocation == K)
+        {
+            int iMinDepth = v.iDepth;
+            iSteps = iMinDepth;
+            iCount++;
 
-				if (z.Pos == K && z.Depth == Depth) cnt++;
-			}
-			return;
-		}
+            while (!q.empty())
+            {
+                Info p = q.front();
+                q.pop();
 
-		visited[v.Pos] = true;
+                if (p.iDepth > iMinDepth) break;
+                if (p.iNowLocation == K) iCount++;
+            }
 
-		for (int i = 0; i < 3; i++)
-		{
-			int result;
-			result = computation(v.Pos, i);
-			if (result < 0 || result > 100000) continue;
-			if (visited[result] && result != K) continue;
-			q.push({ result, v.Depth + 1 });
-		}
-	}
+            return;
+        }
+
+	// 여기에 if(bIsVisited[v.iNowLocation]) continue;를 안넣는 것 매우 중요
+        // 5 -> 10 -> 11(K)
+        // 9 -> 10 -> 11(K)
+	// 위의 2 경우다 iCount에 포함시켜야 하기 때문
+        bIsVisited[v.iNowLocation] = true;
+
+        for (int iMovementIDX = 0; iMovementIDX < 3; iMovementIDX++)
+        {
+            int result = moveLocation(v.iNowLocation, iMovementIDX);
+            
+            if (result < 0 || result > 100000) continue;
+            if (bIsVisited[result]) continue;
+            
+            q.push({result, v.iDepth + 1});
+        }
+    }
 }
 
 int main()
 {
-	//ifstream txt_input("input.txt");
-	cin >> N >> K;
+    //fstream txt_input("input.txt");
+    cin >> N >> K;
 
-	bfs();
-	cout << steps << endl;
-	cout << cnt << endl;
+    BFS();
+    cout << iSteps << endl;
+    cout << iCount << endl;
 
-	return 0;
+    return 0;
 }
