@@ -242,24 +242,20 @@ vector<int> Dfs(const vector<vector<int>>& adj_list, int s)
 	vector<int> visit_order;
 	stack<int> stk;
 	stk.push(s);
-
+	visited[s] = true;
+	
 	while (!stk.empty())
 	{
 		int v = stk.top();
 		stk.pop();
 
-		if (visited[v])
-		{
-			continue;
-		}
-
-		visited[v] = true;
 		visit_order.push_back(v);
 
 		for (int a : adj_list[v])
 		{
 			if (!visited[a])
 			{
+				visited[a] = true;
 				stk.push(a);
 			}
 		}
@@ -274,24 +270,20 @@ vector<int> Bfs(const vector<vector<int>>& adj_list, int s)
 	vector<int> visit_order;
 	queue<int> q;
 	q.push(s);
+        visited[s] = true;
 
 	while (!q.empty())
 	{
 		int v = q.front();
 		q.pop();
 
-		if (visited[v])
-		{
-			continue;
-		}
-
-		visited[v] = true;
 		visit_order.push_back(v);
 
 		for (int a : adj_list[v])
 		{
 			if (!visited[a])
 			{
+				visited[a] = true;
 				q.push(a);
 			}
 		}
