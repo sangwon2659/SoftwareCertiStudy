@@ -1,3 +1,10 @@
+/*
+[1시간]
+마땅히 아이디어가 없어서 완전 노가다성으로 풀었다.
+중간에 Pink Rotation 하나를 실수해서 3%에서 계속 틀렸었다.
+이런 건 무조건 출력하면서 보는 게 최고인 듯.
+*/
+
 #include <iostream>
 #include <fstream>
 #include <vector>
