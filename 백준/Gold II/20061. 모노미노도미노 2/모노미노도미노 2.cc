@@ -1,3 +1,11 @@
+/*
+[3시간]
+완전 빡구현 문제....
+숫자를 조심하는 게 최선
+Rotation을 할 때 특정 좌표의 Grid가 어떻게 바뀔지가 아니라 특정 좌표를 넣었을 때
+Rotation되어서 좌표가 돌아오도록 하는 게 포인트였음
+*/
+
 #include <iostream>
 #include <fstream>
 #include <vector>
