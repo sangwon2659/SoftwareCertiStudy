@@ -1,3 +1,10 @@
+/*
+[1시간]
+차분하게 잘 생각하면서 푸니까 큰 문제는 없었다.
+다만 부호가 헷갈리는 경우가 많았어서 집중이 필요했다.
+한번에 통과해서 기뻤다
+*/
+
 #include <iostream>
 #include <fstream>
 #include <vector>
