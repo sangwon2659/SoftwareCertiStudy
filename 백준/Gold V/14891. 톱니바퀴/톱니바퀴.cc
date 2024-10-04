@@ -1,3 +1,10 @@
+/*
+[1시간]
+머리로 상상하기가 너무 힘들어서 Visualization하는 코드를 작성했는데 이게 시간이 오래 걸렸다.
+처음에 Input을 받을 때 띄어쓰기가 없어서 어떻게 하는지 찾아보니까 string으로 받아서 - '0'을 하면 된다.
+q.push({ v.idx - 1, iMode });에서 v.idx에 -1을 안해줘서 오류가 있었다.
+*/
+
 #include <iostream>
 #include <vector>
 #include <deque>
