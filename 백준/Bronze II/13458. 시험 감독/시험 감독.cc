@@ -1,3 +1,9 @@
+/*
+[1시간]
+int sum으로 선언을 해서 숫자를 막 넣으면 결과가 int의 한계를 넘어갈 수 있다.
+그래서 long long으로 선언을 해야된다.
+*/
+
 #include <iostream>
 #include <vector>
 #include <fstream>
