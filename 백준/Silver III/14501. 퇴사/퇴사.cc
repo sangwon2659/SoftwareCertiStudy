@@ -1,3 +1,11 @@
+/*
+[22분]
+Container에 bool을 쭉 담아놓고 다 탐색을 하면서
+idx += vWork[idx].iDurtaion; <- 이렇게 Duration을 고려해주도록 구현함.
+
+부등호 문제 때문에 Test Case를 몇 번 놓쳤지만 별 문제 없이 잘 풀림.
+*/
+
 #include <iostream>
 #include <vector>
 #include <fstream>
