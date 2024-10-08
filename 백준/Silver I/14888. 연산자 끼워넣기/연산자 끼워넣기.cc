@@ -1,3 +1,9 @@
+/*
+[2시간]
+iMaxResult, iMinResult를 10억1이 아닌 1억1로 해놔서 한참 고생함...
+그리고 코드를 좀 간결하게 짜면 디버깅 하기 쉬울 듯...
+*/
+
 #include <iostream>
 #include <fstream>
 #include <vector>
