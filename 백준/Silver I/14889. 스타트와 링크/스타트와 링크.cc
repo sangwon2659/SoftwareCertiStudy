@@ -1,3 +1,9 @@
+/*
+[2시간]
+이상하게 집중이 잘 안돼서 오래 걸렸다.
+Combination으로 풀면 금방 풀리는 문제였다.
+*/
+
 #include <iostream>
 #include <fstream>
 #include <vector>
