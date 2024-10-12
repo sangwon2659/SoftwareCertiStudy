@@ -565,7 +565,6 @@ sort(v.begin(), v.end(), [](const Info& P1, const Info& P2)
     if (P1.iFreq == P2.iFreq) return P1.iNum < P2.iNum;
     else return P1.iFreq < P2.iFreq;
 });
-
 질문게시판 고수님에 의하면
 sort는 원소에 항상 앞에 있음을 보장하지 않아서
 이런 경우에는 stable_sort를 써야 함...(?)
