@@ -1,3 +1,24 @@
+/*
+[4시간]
+문제가 어려웠다...
+중간에 0이 채워지는 걸 어떻게 처리할지 한참을 고민함
+계속 틀렸다고 나와서
+sort(v.begin(), v.end(), [](const Info& P1, const Info& P2)
+{
+    return P1.iNum < P2.iNum;
+});
+sort(v.begin(), v.end(), [](const Info& P1, const Info& P2)
+{
+    return P1.iFreq < P2.iFreq;
+});
+를 다음과 같이 고치니까 통과가 되었다
+sort(v.begin(), v.end(), [](const Info& P1, const Info& P2)
+{
+    if (P1.iFreq != P2.iFreq) return P1.iFreq < P2.iFreq;
+    else return P1.iNum < P2.iNum;
+});
+*/
+
 #include <iostream>
 #include <fstream>
 #include <vector>
