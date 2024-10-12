@@ -562,7 +562,7 @@ sort(v.begin(), v.end(), [](const Info& P1, const Info& P2)
 를 다음과 같이 고치니까 통과가 되었다
 sort(v.begin(), v.end(), [](const Info& P1, const Info& P2)
 {
-    if (P1.iFreq != P2.iFreq) return P1.iFreq < P2.iFreq;
-    else return P1.iNum < P2.iNum;
+    if (P1.iFreq == P2.iFreq) return P1.iNum < P2.iNum;
+    else return P1.iFreq < P2.iFreq;
 });
 */
