@@ -545,4 +545,24 @@ iNowR하고 iNowC를 쓰면서, iNowR과 같은 행일 때를 제외하고는 iN
 차분하게 잘 생각하면서 푸니까 큰 문제는 없었다.
 다만 부호가 헷갈리는 경우가 많았어서 집중이 필요했다.
 한번에 통과해서 기뻤다
+
+이차원 배열과 연산
+[4시간]
+문제가 어려웠다...
+중간에 0이 채워지는 걸 어떻게 처리할지 한참을 고민함
+계속 틀렸다고 나와서
+sort(v.begin(), v.end(), [](const Info& P1, const Info& P2)
+{
+    return P1.iNum < P2.iNum;
+});
+sort(v.begin(), v.end(), [](const Info& P1, const Info& P2)
+{
+    return P1.iFreq < P2.iFreq;
+});
+를 다음과 같이 고치니까 통과가 되었다
+sort(v.begin(), v.end(), [](const Info& P1, const Info& P2)
+{
+    if (P1.iFreq != P2.iFreq) return P1.iFreq < P2.iFreq;
+    else return P1.iNum < P2.iNum;
+});
 */
