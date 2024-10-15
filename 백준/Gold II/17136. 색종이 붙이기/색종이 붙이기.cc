@@ -4,7 +4,7 @@ for (int iSize = 5; iSize >= 1; iSize--)
 이후에 return을 해서 r과 c에 대한 Loop를 더 안돌게 하는 게 시간 단축에 있어 핵심
 +
 if (iNowCount >= iResult) return;도 가지치기 핵심
-(이런 식으로 어떻게 가지를 칠지 고민하면서 시간을 단축해야 함
+(이런 식으로 어떻게 가지를 칠지 고민하면서 시간을 단축해야 함)
 */
 
 #include <iostream>
