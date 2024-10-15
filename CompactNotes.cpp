@@ -113,57 +113,162 @@ void RotateGrid(vector<vector<int>>& input, const int& mode)
     return;
 }
 
-// Combination & Permutation
-int arr[4] = {1, 2, 3, 4};
-int n = 4;
-int r = 3;
-int order[3] = {0};
-void PrintCombination(int nowPos, int nowVal)
+// 경우의 수
+/*
+1 1 1 1 
+1 1 1 0 
+1 1 0 1 
+1 1 0 0 
+1 0 1 1 
+1 0 1 0 
+1 0 0 1 
+1 0 0 0 
+0 1 1 1 
+0 1 1 0 
+0 1 0 1 
+0 1 0 0 
+0 0 1 1 
+0 0 1 0 
+0 0 0 1 
+0 0 0 0
+*/
+void Combination(const int& iNowPos)
 {
-	if (nowPos == r)
-	{
-		for (int idx = 0; idx < r; idx++)
-		{
-			cout << order[idx] << " ";
-		}
+    if (iNowPos == Container.size())
+    {
+        for (int idx = 0; idx < Container.size(); idx++)
+        {
+            cout << Container[idx] << " ";
+        }
 
-		cout << endl;
-		return;
-	}
+        cout << endl;
 
-	for (int idx = nowVal; idx < n; idx++)
-	{
-		order[nowPos] = idx;
-		PrintCombination(nowPos + 1, idx + 1);
-	}
+        return;
+    }
+
+    Container[iNowPos] = true;
+    Combination(iNowPos + 1);
+
+    Container[iNowPos] = false;
+    Combination(iNowPos + 1);
 }
 
-bool bInUse[4] = {0};
-void PrintPermutation(int nowPos)
+// 팀 만들기 Combination
+/*
+1 2 3 
+1 2 4 
+1 2 5 
+1 3 4 
+1 3 5 
+1 4 5 
+2 3 4 
+2 3 5 
+2 4 5 
+3 4 5 
+*/
+vector<int> Container(8);
+void Combination(const int& n, const int& r, const int& iNowPos, const int& iNowVal)
 {
-	if (nowPos == r)
-	{
-		for (int idx = 0; idx < r; idx++)
-		{
-			cout << order[idx] << " ";
-		}
+    if (iNowPos == r)
+    {
+        for (int idx = 0; idx < r; idx++)
+        {
+            cout << Container[idx] << " ";
+        }
+        cout << endl;
+    }
 
-		cout << endl;
-		return;
-	}
+    for (int idx = iNowVal; idx <= n; idx++)
+    {
+        Container[iNowPos] = idx;
+        Combination(n, r, iNowPos + 1, idx + 1);
+    }
+}
 
-	for (int idx = 0; idx < n; idx++)
-	{
-		if (bInUse[idx])
-		{
-			continue;
-		}
+// 팀 만들기 Permutation
+/*
+1 2 3 
+1 2 4 
+1 2 5 
+1 3 2 
+1 3 4 
+1 3 5 
+1 4 2 
+1 4 3 
+1 4 5 
+1 5 2 
+1 5 3 
+1 5 4 
+2 1 3 
+2 1 4 
+2 1 5 
+2 3 1 
+2 3 4 
+2 3 5 
+2 4 1 
+2 4 3 
+2 4 5 
+2 5 1 
+2 5 3 
+2 5 4 
+3 1 2 
+3 1 4 
+3 1 5 
+3 2 1 
+3 2 4 
+3 2 5 
+3 4 1 
+3 4 2 
+3 4 5 
+3 5 1 
+3 5 2 
+3 5 4 
+4 1 2 
+4 1 3 
+4 1 5 
+4 2 1 
+4 2 3 
+4 2 5 
+4 3 1 
+4 3 2 
+4 3 5 
+4 5 1 
+4 5 2 
+4 5 3 
+5 1 2 
+5 1 3 
+5 1 4 
+5 2 1 
+5 2 3 
+5 2 4 
+5 3 1 
+5 3 2 
+5 3 4 
+5 4 1 
+5 4 2 
+5 4 3 
+*/
+vector<int> Container(8);
+vector<bool> isUsed(8);
+void Permutation(const int& n, const int& r, const int& iNowPos)
+{
+    if (iNowPos == r)
+    {
+        for (int idx = 0; idx < r; idx++)
+        {
+            cout << Container[idx] << " ";
+        }
+        cout << endl;
+    }
 
-		bInUse[idx] = true;
-		order[nowPos] = idx;
-		PrintPermutation(nowPos + 1);
-		bInUse[idx] = false;
-	}
+    for (int idx = 1; idx <= n; idx++)
+    {
+        if (isUsed[idx]) continue;
+        Container[iNowPos] = idx;
+        isUsed[idx] = true;
+        Permutation(n, r, iNowPos + 1);
+        isUsed[idx] = false;
+    }
 }
 
 void printCombinationMap(const int& iMaxActive, const int& iNowActive, const int& iNowR, int iNowC)
@@ -213,6 +318,332 @@ void permutationMap(const int& iMaxNum, const int& iNowNum)
             Grid[r][c] = 1;
             permutationMap(iMaxNum, iNowNum + 1);
             Grid[r][c] = 0;
+        }
+    }
+}
+
+// On/Off가 아닌 팀 기반 Permutation Map
+/*
+1 2 0 
+0 0 0 
+0 0 0 
+============
+1 0 2 
+0 0 0 
+0 0 0 
+============
+1 0 0 
+2 0 0 
+0 0 0 
+============
+1 0 0 
+0 2 0 
+0 0 0 
+============
+1 0 0 
+0 0 2 
+0 0 0 
+============
+1 0 0 
+0 0 0 
+2 0 0 
+============
+1 0 0 
+0 0 0 
+0 2 0 
+============
+1 0 0 
+0 0 0 
+0 0 2 
+============
+2 1 0 
+0 0 0 
+0 0 0 
+============
+2 0 1 
+0 0 0 
+0 0 0 
+============
+2 0 0 
+1 0 0 
+0 0 0 
+============
+2 0 0 
+0 1 0 
+0 0 0 
+============
+2 0 0 
+0 0 1 
+0 0 0 
+============
+2 0 0 
+0 0 0 
+1 0 0 
+============
+2 0 0 
+0 0 0 
+0 1 0 
+============
+2 0 0 
+0 0 0 
+0 0 1 
+============
+0 1 2 
+0 0 0 
+0 0 0 
+============
+0 1 0 
+2 0 0 
+0 0 0 
+============
+0 1 0 
+0 2 0 
+0 0 0 
+============
+0 1 0 
+0 0 2 
+0 0 0 
+============
+0 1 0 
+0 0 0 
+2 0 0 
+============
+0 1 0 
+0 0 0 
+0 2 0 
+============
+0 1 0 
+0 0 0 
+0 0 2 
+============
+0 2 1 
+0 0 0 
+0 0 0 
+============
+0 2 0 
+1 0 0 
+0 0 0 
+============
+0 2 0 
+0 1 0 
+0 0 0 
+============
+0 2 0 
+0 0 1 
+0 0 0 
+============
+0 2 0 
+0 0 0 
+1 0 0 
+============
+0 2 0 
+0 0 0 
+0 1 0 
+============
+0 2 0 
+0 0 0 
+0 0 1 
+============
+0 0 1 
+2 0 0 
+0 0 0 
+============
+0 0 1 
+0 2 0 
+0 0 0 
+============
+0 0 1 
+0 0 2 
+0 0 0 
+============
+0 0 1 
+0 0 0 
+2 0 0 
+============
+0 0 1 
+0 0 0 
+0 2 0 
+============
+0 0 1 
+0 0 0 
+0 0 2 
+============
+0 0 2 
+1 0 0 
+0 0 0 
+============
+0 0 2 
+0 1 0 
+0 0 0 
+============
+0 0 2 
+0 0 1 
+0 0 0 
+============
+0 0 2 
+0 0 0 
+1 0 0 
+============
+0 0 2 
+0 0 0 
+0 1 0 
+============
+0 0 2 
+0 0 0 
+0 0 1 
+============
+0 0 0 
+1 2 0 
+0 0 0 
+============
+0 0 0 
+1 0 2 
+0 0 0 
+============
+0 0 0 
+1 0 0 
+2 0 0 
+============
+0 0 0 
+1 0 0 
+0 2 0 
+============
+0 0 0 
+1 0 0 
+0 0 2 
+============
+0 0 0 
+2 1 0 
+0 0 0 
+============
+0 0 0 
+2 0 1 
+0 0 0 
+============
+0 0 0 
+2 0 0 
+1 0 0 
+============
+0 0 0 
+2 0 0 
+0 1 0 
+============
+0 0 0 
+2 0 0 
+0 0 1 
+============
+0 0 0 
+0 1 2 
+0 0 0 
+============
+0 0 0 
+0 1 0 
+2 0 0 
+============
+0 0 0 
+0 1 0 
+0 2 0 
+============
+0 0 0 
+0 1 0 
+0 0 2 
+============
+0 0 0 
+0 2 1 
+0 0 0 
+============
+0 0 0 
+0 2 0 
+1 0 0 
+============
+0 0 0 
+0 2 0 
+0 1 0 
+============
+0 0 0 
+0 2 0 
+0 0 1 
+============
+0 0 0 
+0 0 1 
+2 0 0 
+============
+0 0 0 
+0 0 1 
+0 2 0 
+============
+0 0 0 
+0 0 1 
+0 0 2 
+============
+0 0 0 
+0 0 2 
+1 0 0 
+============
+0 0 0 
+0 0 2 
+0 1 0 
+============
+0 0 0 
+0 0 2 
+0 0 1 
+============
+0 0 0 
+0 0 0 
+1 2 0 
+============
+0 0 0 
+0 0 0 
+1 0 2 
+============
+0 0 0 
+0 0 0 
+2 1 0 
+============
+0 0 0 
+0 0 0 
+2 0 1 
+============
+0 0 0 
+0 0 0 
+0 1 2 
+============
+0 0 0 
+0 0 0 
+0 2 1 
+============
+*/
+vector<vector<int>> GridContainer(3, vector<int>(3));
+vector<bool> bIsUsed(4);
+void CombinationMap(const int& n, const int& r_, const int& iNowR, int iNowC, const int& iNowVal, const int& iNowCount)
+{
+    if (iNowCount == r_)
+    {
+        for (int r = 0; r < 3; r++)
+        {
+            for (int c = 0; c < 3; c++)
+            {
+                cout << GridContainer[r][c] << " ";
+            }
+            cout << endl;
+        }
+        cout << "============" << endl;
+    }
+
+    for (int r = iNowR; r < 3; r++)
+    {
+        if (r != iNowR) iNowC = 0;
+        for (int c = iNowC; c < 3; c++)
+        {
+            for (int idx = 1; idx <= n; idx++)
+            {
+                if (bIsUsed[idx]) continue;
+                GridContainer[r][c] = idx;
+                bIsUsed[idx] = true;
+                CombinationMap(n, r_, r, c + 1, idx + 1, iNowCount + 1);
+                GridContainer[r][c] = 0;
+                bIsUsed[idx] = false;
+            }
         }
     }
 }
@@ -570,26 +1001,4 @@ sort는 원소에 항상 앞에 있음을 보장하지 않아서
 이런 경우에는 stable_sort를 써야 함...(?)
 실제로 이렇게 하니까 맞았음...
 그냥 무조건 if문으로 sort는 한번에 하자
-*/
-
-/*
-Combination
-1 1 1 1 
-1 1 1 0 
-1 1 0 1 
-1 1 0 0 
-1 0 1 1 
-1 0 1 0 
-1 0 0 1 
-1 0 0 0 
-0 1 1 1 
-0 1 1 0 
-0 1 0 1 
-0 1 0 0 
-0 0 1 1 
-0 0 1 0 
-0 0 0 1 
-0 0 0 0
-
-
 */
