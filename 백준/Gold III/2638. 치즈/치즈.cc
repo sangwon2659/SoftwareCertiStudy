@@ -1,3 +1,8 @@
+/*
+[20분]
+(0,0)부터 시작해서 쭉 훑어나가는 방식으로 간단하게 풀었음
+*/
+
 #include <iostream>
 #include <fstream>
 #include <vector>
